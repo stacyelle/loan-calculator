@@ -1,0 +1,12 @@
+.App {
+  background-color: #28283d;
+  color: #FFFFFF;
+  font-family: 'Quicksand', sans-serif;
+  height: auto;
+}
+
+.App-logo {
+  height: 3vh;
+  margin: 15px;
+  pointer-events: none;
+}
