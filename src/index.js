@@ -19,13 +19,17 @@ let theme = createMuiTheme({
     primary: {
       main: "#FFFFFF",
     },
+    secondary: {
+      main: "#00ffc3",
+    },
     background: {
       default: "#28283d",
     },
   },
   overrides: {
     MuiCssBaseline: {
-      backgroundColor: '#28283d'
+      backgroundColor: '#28283d',
+      secondary: "#00ffc3",
     }
   }
 });
