@@ -1,4 +1,5 @@
 import './App.css';
+import LoanCalculator from './components/LoanCalculator/LoanCalculator';
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <header className='App-header'>
         <img src={process.env.REACT_APP_LOGO_URL} className='App-logo' alt='logo' />
       </header>
+      <LoanCalculator />
     </div>
   );
 }
