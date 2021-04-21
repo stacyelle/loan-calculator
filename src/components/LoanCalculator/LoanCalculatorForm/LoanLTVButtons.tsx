@@ -37,8 +37,7 @@ export default function LoanLTVButtons({ updateFormValues }: { updateFormValues:
           LTVPercentageOptions.map((percentage) => (
             <Grid item>
               <StyledButton
-                onClick={() => handleClick}
-                color={'secondary'}
+                onClick={() => handleClick(percentage)}
                 style={{ 
                   backgroundColor: (selectedPercentage === percentage ? '#00ffc3' : undefined),
                   color: (selectedPercentage === percentage ? '#28283d' : '#FFFFFF'),

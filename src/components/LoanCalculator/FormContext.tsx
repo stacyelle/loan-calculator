@@ -2,9 +2,9 @@ import { createContext } from 'react';
 
 export type FormValues = {
   loanAmount: number | null;
-  loanTerm: number | null;
-  loanLTV: number | null;
-  loanRepayment: string | null;
+  loanTerm: number;
+  loanLTV: number;
+  loanRepayment: string;
 };
 
 export type FormContextType = {

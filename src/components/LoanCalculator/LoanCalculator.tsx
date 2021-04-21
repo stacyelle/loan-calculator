@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import FormContext, { FormContextType, FormDefaults, FormValues } from './FormContext';
 import LoanCalculatorHeader from './LoanCalculatorHeader';
 import LoanCalculatorForm from './LoanCalculatorForm/index';
+import LoanCalculatorResults from './LoanCalculatorResults/index';
 
 export default function LoanCalculator() {
   const [formValues, setFormValues] = useState<FormValues>(FormDefaults);
@@ -20,7 +21,7 @@ export default function LoanCalculator() {
             <LoanCalculatorForm />
           </Grid>
           <Grid item xs={12} sm={6}>
-
+            <LoanCalculatorResults />
           </Grid>
         </Grid>
       </Container>

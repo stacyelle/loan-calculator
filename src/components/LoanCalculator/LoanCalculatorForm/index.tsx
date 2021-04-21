@@ -17,16 +17,16 @@ export default function LoanCalculatorForm(): ReactElement {
 
   return (
       <Grid container spacing={3} alignItems='center'style={{width: '90%', margin: 'auto'}} >
-        <Grid item >
+        <Grid item>
           <LoanAmountInput updateFormValues={updateFormValues} />
         </Grid>
-        <Grid item >
+        <Grid item>
           <LoanTermSlider updateFormValues={updateFormValues} />
         </Grid>
         <Grid item container >
           <LoanLTVButtons updateFormValues={updateFormValues} />
         </Grid>
-        <Grid item >
+        <Grid item>
           <LoanRepayment updateFormValues={updateFormValues} />
         </Grid>
       </Grid>
