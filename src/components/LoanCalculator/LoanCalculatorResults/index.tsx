@@ -1,6 +1,18 @@
-import { useContext, ReactElement } from 'react'
-import { Box, Grid, Typography } from '@material-ui/core';
-import FormContext, { FormContextType } from '../FormContext';
+import { ReactElement, useContext, useEffect, useState } from 'react'
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import FormContext from '../FormContext';
+import { FormContextType, CryptoConversionRates } from '../types.d';
+import fetchCryptoConversionRates from '../hooks/fetchCryptoConversionRates';
+import { getMonthlyPayment, getTotalLoanCost, getInterest, getCollateral, getInterestOnlyPayment, getLastPayment, getMonthlyInterestRate } from '../helpers/calculations';
+
+import LoanMonthlyPayment from './LoanMonthlyPayment';
+import LoanAmount from './LoanAmount';
+import LoanInterestRate from './LoanInterestRate';
+import LoanTotalCost from './LoanTotalCost';
+import LoanInterest from './LoanInterest';
+import LoanCollateral from './LoanCollateral';
+import SALTCollateral from './SALTCollateral';
 
 const InterestRatesForLTV: any = {
   30: 7,
@@ -8,71 +20,77 @@ const InterestRatesForLTV: any = {
   50: 9,
   60: 10,
   70: 11,
-}
+};
 
 export default function LoanCalculatorResults(): ReactElement {
   const { formValues: { loanAmount, loanTerm, loanLTV, loanRepayment } } = useContext<FormContextType>(FormContext);
+  const [ conversionRates, setConversionRates ] = useState<CryptoConversionRates | null>(null);
+
+  useEffect(() => {
+    if (conversionRates) return;
+    return () => {
+      fetchCryptoConversionRates()
+      .then((data) => setConversionRates(data))
+      .catch((error) =>  console.error(error))
+    }
+  }, [loanAmount, conversionRates]);
+
   const interestRate: number = InterestRatesForLTV[loanLTV];
+  const monthlyInterestRate: number = getMonthlyInterestRate(interestRate);
+  let interest: number = 0;
+  let monthlyPayment:number = 0;
+  let totalLoanCost: number = 0;
+  let collateral: number = 0;
+  let interestOnlyPayment: number = 0;
+  let lastPayment:number = 0;
+
+  if (loanAmount) {
+    monthlyPayment = getMonthlyPayment(loanAmount, loanTerm, monthlyInterestRate)
+    totalLoanCost= getTotalLoanCost(monthlyPayment,loanTerm);
+    interest = getInterest(totalLoanCost, loanAmount);
+    collateral = getCollateral(loanAmount, loanLTV);
+    interestOnlyPayment = getInterestOnlyPayment(monthlyInterestRate, loanAmount);
+    lastPayment = getLastPayment(loanAmount, interestOnlyPayment, loanTerm);
+  }
 
   return (
     <Box alignItems='center' display='flex' justifyContent='center' style={{ backgroundColor: '#00ffc3', height: '100%', padding: '20px', color: '#28283d'}}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant='body2'>
-            Monthly Payment
-          </Typography>
-          <Typography style={{fontWeight: 700}} variant='h4'>
-            ${loanAmount}
-          </Typography>
-          <Typography style={{fontWeight: 600}} variant='body1'>
-            Last Payment: $10,100,100
-          </Typography>
+          <LoanMonthlyPayment 
+            interestOnlyPayment={interestOnlyPayment}
+            loanAmount={loanAmount}
+            lastPayment={lastPayment}
+            loanRepayment={loanRepayment}
+            loanTerm={loanTerm}
+            monthlyPayment={monthlyPayment}
+          />
         </Grid>
 
         <Grid item xs={6}>
-          <Typography style={{fontWeight: 600}} variant='caption'>
-            Loan Amount
-          </Typography>
-          <Typography style={{fontWeight: 700}} variant='h6'>
-          ${loanAmount}
-          </Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography style={{fontWeight: 600}} variant='caption'>
-            Interest Rate (APR)
-          </Typography>
-          <Typography style={{fontWeight: 700}} variant='h6'>
-            {interestRate}.00%
-          </Typography>
+          <LoanAmount loanAmount={loanAmount} />
         </Grid>
 
         <Grid item xs={6}>
-          <Typography style={{fontWeight: 600}} variant='caption'>
-            Total Loan Cost
-          </Typography>
-          <Typography style={{fontWeight: 700}} variant='h6'>
-            $11,200,000
-          </Typography>
+          <LoanInterestRate interestRate={interestRate} loanAmount={loanAmount} />
         </Grid>
+
         <Grid item xs={6}>
-          <Typography style={{fontWeight: 600}} variant='caption'>
-            Interest
-          </Typography>
-          <Typography style={{fontWeight: 700}} variant='h6'>
-            $1,200,000
-          </Typography>
+          <LoanTotalCost loanTotalCost={totalLoanCost}  loanAmount={loanAmount} />
+        </Grid>
+  
+        <Grid item xs={6}>
+          <LoanInterest interest={interest} loanAmount={loanAmount} />
         </Grid>
 
         <Grid item xs={12}>
-          <Typography style={{fontWeight: 700}} variant='caption'>
-            Collateral Needed
-          </Typography>
-          <Typography style={{fontWeight: 700}} variant='h5'>
-            $16,666,667 USD worth of:
-          </Typography>
+          <LoanCollateral conversionRates={conversionRates} collateral={collateral} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <SALTCollateral  conversionRates={conversionRates} collateral={collateral} />
         </Grid>
       </Grid>
-      
     </Box>
   );
 }

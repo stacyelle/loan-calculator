@@ -1,13 +1,11 @@
 import { useContext, ReactElement } from 'react'
 import Grid from '@material-ui/core/Grid';
-
-import FormContext, { FormContextType, FormValues } from '../FormContext';
+import FormContext from '../FormContext';
+import { FormContextType, FormValues } from '../types.d';
 import LoanAmountInput from './LoanAmountInput';
 import LoanTermSlider from './LoanTermSlider';
-import LoanLTVButtons from './LoanLTVButtons';
+import LoanLTVRadio from './LoanLTVRadio';
 import LoanRepayment from './LoanRepayment';
-
-// TODO: styling, see here https://www.headway.io/blog/global-styling-with-material-ui-theme-overrides-and-props
 
 export default function LoanCalculatorForm(): ReactElement {
   const { setFormValues } = useContext<FormContextType>(FormContext);
@@ -24,7 +22,7 @@ export default function LoanCalculatorForm(): ReactElement {
           <LoanTermSlider updateFormValues={updateFormValues} />
         </Grid>
         <Grid item container >
-          <LoanLTVButtons updateFormValues={updateFormValues} />
+          <LoanLTVRadio updateFormValues={updateFormValues} />
         </Grid>
         <Grid item>
           <LoanRepayment updateFormValues={updateFormValues} />

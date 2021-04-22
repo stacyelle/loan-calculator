@@ -26,12 +26,6 @@ let theme = createMuiTheme({
       default: "#28283d",
     },
   },
-  overrides: {
-    MuiCssBaseline: {
-      backgroundColor: '#28283d',
-      secondary: "#00ffc3",
-    }
-  }
 });
 theme = responsiveFontSizes(theme);
 

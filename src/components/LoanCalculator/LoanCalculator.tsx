@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
-import FormContext, { FormContextType, FormDefaults, FormValues } from './FormContext';
+import FormContext, { FormDefaults } from './FormContext';
+import { FormContextType, FormValues } from './types.d';
 import LoanCalculatorHeader from './LoanCalculatorHeader';
 import LoanCalculatorForm from './LoanCalculatorForm/index';
 import LoanCalculatorResults from './LoanCalculatorResults/index';

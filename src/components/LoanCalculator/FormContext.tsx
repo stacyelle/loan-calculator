@@ -1,22 +1,11 @@
 import { createContext } from 'react';
-
-export type FormValues = {
-  loanAmount: number | null;
-  loanTerm: number;
-  loanLTV: number;
-  loanRepayment: string;
-};
-
-export type FormContextType = {
-  formValues: FormValues;
-  setFormValues: any;
-}
+import { FormValues, LoanLTVOptions, LoanRepaymentOptions, FormContextType } from './types.d';
 
 export const FormDefaults: FormValues = {
   loanAmount: null,
   loanTerm: 12,
-  loanLTV: 60, 
-  loanRepayment: 'Interest Only',
+  loanLTV: LoanLTVOptions.Sixty, 
+  loanRepayment: LoanRepaymentOptions.InterestOnly,
 };
 
 export default createContext<FormContextType>({
