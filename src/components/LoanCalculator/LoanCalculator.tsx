@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-
+import { LoanCalculatorStyle } from './styles';
 import FormContext, { FormDefaults } from './FormContext';
 import { FormContextType, FormValues } from './types.d';
 import LoanCalculatorHeader from './LoanCalculatorHeader';
@@ -17,7 +17,7 @@ export default function LoanCalculator() {
     >
       <Container maxWidth='md'>
         <LoanCalculatorHeader />
-        <Grid container style={{border: '1px solid white', margin: '5vh auto'}}>
+        <Grid container style={LoanCalculatorStyle}>
           <Grid style={{padding: '3vw'}} item xs={12} sm={6}>
             <LoanCalculatorForm />
           </Grid>

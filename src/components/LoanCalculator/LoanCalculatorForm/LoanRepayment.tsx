@@ -2,26 +2,13 @@ import { ReactElement, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
 import FormLabel from './FormLabel';
+import { LoanRepaymentStyle } from '../styles';
 
 const RepaymentOptions = ['Interest Only', 'Principal & Interest'];
 const formLabel = 'loanRepayment';
 
-const StyledButton = withStyles({
-  root: {
-    border: '#FFFFFF 1px solid',
-    borderRadius: '2px',
-    color: '#FFFFFF',
-    fontSize: '10px',
-    fontWeight: 700,
-  },
-  label: {
-    padding: '3px 5px',
-    textTransform: 'capitalize',
-    width: '100%'
-  },
-})(Button);
+const StyledButton = withStyles(LoanRepaymentStyle)(Button);
 
 /**
  * 

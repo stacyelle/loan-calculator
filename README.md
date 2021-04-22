@@ -1,7 +1,25 @@
-# Getting Started with Create React App
+# Getting Started with SALT Loan Calculator
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+To run this app, you will need to create a `.env` file and add the following keys:
+
+`REACT_APP_LOGO_URL='https://saltlending.com/wp-content/uploads/2020/11/logo.svg'`
+`REACT_APP_CRYPTO_COMPARE_API_KEY=<insert your own Crypto Compare API Key here>`
+
+You can visit [Crypto Compare](https://www.cryptocompare.com/cryptopian/api-keys) to get your free API Key.
+
+# Notes
+
+There are multiple things I would have liked to address in this project, had there been more time to complete this to my satisfaction. 
+This includes:
+- Improving styles to better match the design mocks.
+- Test coverage for all components, calculation functions, and user experience.
+- Improved file architecture.
+- Improved error handling.
+- Small tweaks to the UI to create a more enjoyable user experience.
+
+This project allowed me to work in React with Typescript in a way that I have not been able to yet. I have experience with Typescript in Node.js, but this project provided ample learning and growth opportunities for me. I am extremely grateful to have been able to work on this code challenge, and I hope to be able to work with you all in the future.
 ## Available Scripts
 
 In the project directory, you can run:

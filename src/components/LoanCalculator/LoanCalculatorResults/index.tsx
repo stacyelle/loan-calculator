@@ -5,7 +5,7 @@ import FormContext from '../FormContext';
 import { FormContextType, CryptoConversionRates } from '../types.d';
 import fetchCryptoConversionRates from '../hooks/fetchCryptoConversionRates';
 import { getMonthlyPayment, getTotalLoanCost, getInterest, getCollateral, getInterestOnlyPayment, getLastPayment, getMonthlyInterestRate } from '../helpers/calculations';
-
+import { LoanCalculatorResultsStyle } from '../styles';
 import LoanMonthlyPayment from './LoanMonthlyPayment';
 import LoanAmount from './LoanAmount';
 import LoanInterestRate from './LoanInterestRate';
@@ -54,7 +54,7 @@ export default function LoanCalculatorResults(): ReactElement {
   }
 
   return (
-    <Box alignItems='center' display='flex' justifyContent='center' style={{ backgroundColor: '#00ffc3', height: '100%', padding: '20px', color: '#28283d'}}>
+    <Box alignItems='center' display='flex' justifyContent='center' style={LoanCalculatorResultsStyle}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <LoanMonthlyPayment 
