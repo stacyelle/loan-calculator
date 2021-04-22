@@ -1,6 +1,6 @@
 # Getting Started with SALT Loan Calculator
 
-![Image of SALT Loan Calculator]('./Screenshot.png')
+![Image of SALT Loan Calculator](https://github.com/stacyelle/loan-calculator/blob/main/Screenshot.png?raw=true)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
