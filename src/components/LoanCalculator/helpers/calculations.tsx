@@ -22,7 +22,7 @@ export function getInterest(totalLoanCost: number, loanAmount: number): number {
   return totalLoanCost - loanAmount;
 }
 
-export function getCollateral(loanLTV: number, loanAmount: number): number {
+export function getCollateral(loanAmount: number, loanLTV: number): number {
   return loanAmount / (loanLTV / 100);
 }
 
