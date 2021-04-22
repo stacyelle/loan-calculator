@@ -1,13 +1,18 @@
 # Getting Started with SALT Loan Calculator
 
+![Image of SALT Loan Calculator]('./Screenshot.png')
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 To run this app, you will need to create a `.env` file and add the following keys:
 
 `REACT_APP_LOGO_URL='https://saltlending.com/wp-content/uploads/2020/11/logo.svg'`
+
 `REACT_APP_CRYPTO_COMPARE_API_KEY=<insert your own Crypto Compare API Key here>`
 
 You can visit [Crypto Compare](https://www.cryptocompare.com/cryptopian/api-keys) to get your free API Key.
+
+Once your `.env` is in place, you can use `npm start` to run the application. You will find the application at `http://localhost:3000/`.
 
 # Notes
 
